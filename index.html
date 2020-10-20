@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="shortcut icon" href="http://www.iconj.com/ico/h/j/hjksjxzqk1.ico" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <title>Números Par</title>
+
+</head>
+
+<body>
+    <form id="numero-par">
+        <h1>Números Par/Ímpar</h1>
+        <br>
+        <input type="text" name="numero" id="txt-numero" placeholder="Informe o número">
+        <br>
+
+        <input type="radio" id="paginaImpar" name="boletimDuplo" value="paginaImpar" checked>
+        <label for="paginaImpar">Página Boletim Ímpar</label>
+
+        <br>
+
+        <input type="radio" id="paginaPar" name="boletimDuplo" value="paginaPar">
+        <label for="paginaPar">Página Boletim Par</label>
+
+        <br>
+        <input class="waves-effect waves-light btn" type="button" value="Calcular" id="botao-calcular"
+            name="btnCalcular" style="margin-top: 20px">
+        <br>
+        <br>
+        <input type="text" name="calculo" id="txt-calculo" placeholder="Numeros Calculados" disabled>
+    </form>
+
+    <script>
+        var btnCalcular = document.querySelector('#botao-calcular');
+
+        btnCalcular.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var form = document.querySelector('#numero-par');
+            var iptNumero = form.querySelector('#txt-numero');
+            var iptCalculo = form.querySelector('#txt-calculo');
+
+            numero = iptNumero.value;
+
+            var soma = 0, i, proximo;
+            var vetor = new Array();
+
+            $(document).ready(function () {
+                $('#botao-calcular').click(function () {
+                    if ($("input[type='radio'][name='boletimDuplo'][value='paginaImpar']").is(':checked')) {
+                        for (i = 2; i <= numero; i = i + 2) {
+                            proximo = vetor.length;
+                            vetor[proximo] = i;
+                        }
+                        iptCalculo.value = vetor;
+                    } else if ($("input[type='radio'][name='boletimDuplo'][value='paginaPar']").is(':checked')) {
+                        var a = 1;
+                        while (a <= numero) {
+                            if (a % 2 != 0) {
+                                proximo = vetor.length;
+                                vetor[proximo] = a;
+                                iptCalculo.value = vetor;
+                            }
+                            a++;
+                        }
+                    }
+                })
+            })
+        });
+    </script>
+</body>
+
+</html>
